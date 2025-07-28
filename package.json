@@ -1,1 +1,19 @@
-
+{
+  "name": "web-project-base",
+  "version": "1.0.0",
+  "description": "Base flexível para projetos web",
+  "main": "src/js/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run sass:watch\" \"npm run serve\"",
+    "build": "npm run sass:build && npm run js:build",
+    "sass:watch": "sass src/scss/main.scss dist/css/style.css --watch --source-map",
+    "sass:build": "sass src/scss/main.scss dist/css/style.css --style=compressed",
+    "js:build": "cp -r src/js/* dist/js/",
+    "serve": "live-server --port=3000 --entry-file=pages/index.html"
+  },
+  "devDependencies": {
+    "sass": "^1.69.0",
+    "live-server": "^1.2.2",
+    "concurrently": "^8.2.0"
+  }
+}
