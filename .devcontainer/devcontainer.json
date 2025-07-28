@@ -1,0 +1,61 @@
+{
+  "name": "Web Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-css-peek",
+        "ritwickdey.liveserver",
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-rename-tag",
+        "christian-kohler.path-intellisense",
+        "ms-vscode.vscode-json",
+        "glenn2223.live-sass",
+        "ms-vscode.hexeditor",
+        "usernamehw.errorlens",
+        "streetsidesoftware.code-spell-checker-portuguese-brazilian"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "liveSassCompile.settings.formats": [
+          {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/dist/css"
+          }
+        ],
+        "liveServer.settings.port": 3000,
+        "liveServer.settings.CustomBrowser": "chrome",
+        "liveServer.settings.donotShowInfoMsg": true
+      }
+    }
+  },
+
+  "forwardPorts": [3000, 3001, 8080],
+  "portsAttributes": {
+    "3000": {
+      "label": "Development Server",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "postCreateCommand": "npm install && npm run setup",
+
+  "remoteUser": "node"
+}
