@@ -1,1 +1,27 @@
+// Abstracts (variáveis, mixins, funções)
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
 
+// Base (reset, tipografia, utilitários)
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/utilities';
+
+// Layout (grid, containers, seções)
+@import 'layout/grid';
+@import 'layout/containers';
+@import 'layout/sections';
+
+// Componentes (botões, formulários, etc.)
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/navigation';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/cards';
+
+// Pages (estilos específicos de páginas)
+@import 'pages/home';
+@import 'pages/about';
+@import 'pages/contact';
