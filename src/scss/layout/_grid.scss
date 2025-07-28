@@ -1,1 +1,102 @@
+// ===== SISTEMA DE GRID =====
 
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  
+  // Grid columns
+  &--cols-1 { grid-template-columns: repeat(1, 1fr); }
+  &--cols-2 { grid-template-columns: repeat(2, 1fr); }
+  &--cols-3 { grid-template-columns: repeat(3, 1fr); }
+  &--cols-4 { grid-template-columns: repeat(4, 1fr); }
+  &--cols-5 { grid-template-columns: repeat(5, 1fr); }
+  &--cols-6 { grid-template-columns: repeat(6, 1fr); }
+  &--cols-12 { grid-template-columns: repeat(12, 1fr); }
+  
+  // Gap variants
+  &--gap-0 { gap: 0; }
+  &--gap-1 { gap: var(--space-1); }
+  &--gap-2 { gap: var(--space-2); }
+  &--gap-3 { gap: var(--space-3); }
+  &--gap-4 { gap: var(--space-4); }
+  &--gap-6 { gap: var(--space-6); }
+  &--gap-8 { gap: var(--space-8); }
+  
+  // Responsive variants
+  @include respond-to(sm) {
+    &--sm-cols-1 { grid-template-columns: repeat(1, 1fr); }
+    &--sm-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    &--sm-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    &--sm-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+  
+  @include respond-to(md) {
+    &--md-cols-1 { grid-template-columns: repeat(1, 1fr); }
+    &--md-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    &--md-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    &--md-cols-4 { grid-template-columns: repeat(4, 1fr); }
+    &--md-cols-6 { grid-template-columns: repeat(6, 1fr); }
+  }
+  
+  @include respond-to(lg) {
+    &--lg-cols-1 { grid-template-columns: repeat(1, 1fr); }
+    &--lg-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    &--lg-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    &--lg-cols-4 { grid-template-columns: repeat(4, 1fr); }
+    &--lg-cols-6 { grid-template-columns: repeat(6, 1fr); }
+    &--lg-cols-12 { grid-template-columns: repeat(12, 1fr); }
+  }
+}
+
+// Grid item utilities
+.col {
+  &--span-1 { grid-column: span 1; }
+  &--span-2 { grid-column: span 2; }
+  &--span-3 { grid-column: span 3; }
+  &--span-4 { grid-column: span 4; }
+  &--span-5 { grid-column: span 5; }
+  &--span-6 { grid-column: span 6; }
+  &--span-full { grid-column: 1 / -1; }
+  
+  // Responsive spans
+  @include respond-to(sm) {
+    &--sm-span-1 { grid-column: span 1; }
+    &--sm-span-2 { grid-column: span 2; }
+    &--sm-span-3 { grid-column: span 3; }
+    &--sm-span-4 { grid-column: span 4; }
+  }
+  
+  @include respond-to(md) {
+    &--md-span-1 { grid-column: span 1; }
+    &--md-span-2 { grid-column: span 2; }
+    &--md-span-3 { grid-column: span 3; }
+    &--md-span-4 { grid-column: span 4; }
+    &--md-span-6 { grid-column: span 6; }
+  }
+  
+  @include respond-to(lg) {
+    &--lg-span-1 { grid-column: span 1; }
+    &--lg-span-2 { grid-column: span 2; }
+    &--lg-span-3 { grid-column: span 3; }
+    &--lg-span-4 { grid-column: span 4; }
+    &--lg-span-6 { grid-column: span 6; }
+    &--lg-span-8 { grid-column: span 8; }
+    &--lg-span-12 { grid-column: span 12; }
+  }
+}
+
+// ===== FLEXBOX SYSTEM =====
+
+.flex {
+  display: flex;
+  
+  // Direction
+  &--row { flex-direction: row; }
+  &--col { flex-direction: column; }
+  &--row-reverse { flex-direction: row-reverse; }
+  &--col-reverse { flex-direction: column-reverse; }
+  
+  // Justify content
+  &--justify-start { justify-content: flex-start; }
+  &--justify-center { justify-content: center; }
+  &--

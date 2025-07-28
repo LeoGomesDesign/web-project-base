@@ -1,1 +1,280 @@
+// ===== RESPONSIVE MIXINS =====
 
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` não encontrado em $breakpoints.";
+  }
+}
+
+@mixin respond-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: (map-get($breakpoints, $breakpoint) - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-between($min, $max) {
+  @media (min-width: map-get($breakpoints, $min)) and (max-width: (map-get($breakpoints, $max) - 1px)) {
+    @content;
+  }
+}
+
+// ===== LAYOUT MIXINS =====
+
+// Flexbox utilities
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-center {
+  @include flex(row, center, center);
+}
+
+@mixin flex-between {
+  @include flex(row, space-between, center);
+}
+
+@mixin flex-around {
+  @include flex(row, space-around, center);
+}
+
+@mixin flex-column {
+  @include flex(column, flex-start, stretch);
+}
+
+// Grid utilities
+@mixin grid($columns: 12, $gap: var(--space-4)) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+@mixin grid-area($row-start, $row-end, $col-start, $col-end) {
+  grid-area: $row-start / $col-start / $row-end / $col-end;
+}
+
+// ===== SPACING MIXINS =====
+
+// Padding utilities
+@mixin p($value) {
+  padding: map-get($spacings, $value);
+}
+
+@mixin px($value) {
+  padding-left: map-get($spacings, $value);
+  padding-right: map-get($spacings, $value);
+}
+
+@mixin py($value) {
+  padding-top: map-get($spacings, $value);
+  padding-bottom: map-get($spacings, $value);
+}
+
+@mixin pt($value) { padding-top: map-get($spacings, $value); }
+@mixin pr($value) { padding-right: map-get($spacings, $value); }
+@mixin pb($value) { padding-bottom: map-get($spacings, $value); }
+@mixin pl($value) { padding-left: map-get($spacings, $value); }
+
+// Margin utilities
+@mixin m($value) {
+  margin: map-get($spacings, $value);
+}
+
+@mixin mx($value) {
+  margin-left: map-get($spacings, $value);
+  margin-right: map-get($spacings, $value);
+}
+
+@mixin my($value) {
+  margin-top: map-get($spacings, $value);
+  margin-bottom: map-get($spacings, $value);
+}
+
+@mixin mt($value) { margin-top: map-get($spacings, $value); }
+@mixin mr($value) { margin-right: map-get($spacings, $value); }
+@mixin mb($value) { margin-bottom: map-get($spacings, $value); }
+@mixin ml($value) { margin-left: map-get($spacings, $value); }
+
+// ===== COMPONENT MIXINS =====
+
+// Button base
+@mixin button-base {
+  @include flex-center;
+  @include px(4);
+  @include py(2);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: $font-primary;
+  font-weight: var(--font-medium);
+  font-size: var(--font-size-base);
+  line-height: var(--leading-normal);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-base);
+  user-select: none;
+  outline: none;
+  
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Button variants
+@mixin button-solid($color) {
+  background-color: var(--color-#{$color}-500);
+  color: var(--color-white);
+  
+  &:hover:not(:disabled) {
+    background-color: var(--color-#{$color}-600);
+  }
+  
+  &:active:not(:disabled) {
+    background-color: var(--color-#{$color}-700);
+  }
+}
+
+@mixin button-outline($color) {
+  background-color: transparent;
+  border: 1px solid var(--color-#{$color}-500);
+  color: var(--color-#{$color}-500);
+  
+  &:hover:not(:disabled) {
+    background-color: var(--color-#{$color}-500);
+    color: var(--color-white);
+  }
+}
+
+@mixin button-ghost($color) {
+  background-color: transparent;
+  color: var(--color-#{$color}-500);
+  
+  &:hover:not(:disabled) {
+    background-color: var(--color-#{$color}-50);
+  }
+}
+
+// Card component
+@mixin card($padding: 6, $shadow: 'base') {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-#{$shadow});
+  @include p($padding);
+}
+
+// Input component
+@mixin input-base {
+  width: 100%;
+  @include px(3);
+  @include py(2);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  font-family: $font-primary;
+  font-size: var(--font-size-base);
+  line-height: var(--leading-normal);
+  transition: var(--transition-base);
+  
+  &::placeholder {
+    color: var(--color-gray-400);
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  &:invalid {
+    border-color: var(--danger);
+  }
+  
+  &:disabled {
+    background-color: var(--color-gray-50);
+    color: var(--color-gray-500);
+    cursor: not-allowed;
+  }
+}
+
+// ===== UTILITY MIXINS =====
+
+// Text utilities
+@mixin text($size, $weight: var(--font-normal), $color: inherit) {
+  font-size: var(--font-size-#{$size});
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Visual utilities
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Animation utilities
+@mixin fade-in($duration: var(--transition-base)) {
+  animation: fadeIn $duration ease-in-out;
+}
+
+@mixin slide-up($duration: var(--transition-base)) {
+  animation: slideUp $duration ease-out;
+}
+
+// Keyframes (adicionar no final do arquivo)
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,1 +1,67 @@
+// ===== SISTEMA DE CONTAINERS =====
 
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  @include px(4);
+  
+  @include respond-to(sm) {
+    max-width: var(--container-sm);
+  }
+  
+  @include respond-to(md) {
+    max-width: var(--container-md);
+  }
+  
+  @include respond-to(lg) {
+    max-width: var(--container-lg);
+  }
+  
+  @include respond-to(xl) {
+    max-width: var(--container-xl);
+  }
+  
+  @include respond-to(2xl) {
+    max-width: var(--container-2xl);
+  }
+}
+
+// Container fluid (full width)
+.container-fluid {
+  width: 100%;
+  @include px(4);
+}
+
+// Container breakpoint específicos
+.container-sm {
+  @extend .container;
+  
+  @include respond-to(sm) {
+    max-width: var(--container-sm);
+  }
+}
+
+.container-md {
+  @extend .container;
+  
+  @include respond-to(md) {
+    max-width: var(--container-md);
+  }
+}
+
+.container-lg {
+  @extend .container;
+  
+  @include respond-to(lg) {
+    max-width: var(--container-lg);
+  }
+}
+
+.container-xl {
+  @extend .container;
+  
+  @include respond-to(xl) {
+    max-width: var(--container-xl);
+  }
+}
