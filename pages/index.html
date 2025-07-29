@@ -1,38 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meu Projeto Web</title>
-    <link rel="stylesheet" href="../dist/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/dist/css/style.css" />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="navbar__brand">Meu Projeto</a>
-            <ul class="navbar__nav">
-                <li><a href="index.html" class="navbar__link navbar__link--active">Home</a></li>
-                <li><a href="about.html" class="navbar__link">Sobre</a></li>
-                <li><a href="contact.html" class="navbar__link">Contato</a></li>
-            </ul>
-        </div>
+      <div class="container">
+        <a href="/pages/index.html" class="navbar__brand">Meu Projeto</a>
+        <ul class="navbar__nav">
+          <li>
+            <a
+              href="/pages/index.html"
+              class="navbar__link navbar__link--active"
+              >Home</a
+            >
+          </li>
+          <li><a href="/pages/about.html" class="navbar__link">Sobre</a></li>
+          <li>
+            <a href="/pages/contact.html" class="navbar__link">Contato</a>
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <main class="main">
-        <div class="header">
-            <div class="container">
-                <div class="header__content">
-                    <h1 class="header__title">Bem-vindo ao Meu Projeto</h1>
-                    <p class="header__subtitle">Uma base flexível para desenvolvimento web</p>
-                    <div class="header__cta">
-                        <a href="#" class="btn btn--primary">Começar</a>
-                        <a href="#" class="btn btn--outline">Saiba Mais</a>
-                    </div>
-                </div>
+      <div class="header">
+        <div class="container">
+          <div class="header__content">
+            <h1 class="header__title">Bem-vindo ao Meu Projeto</h1>
+            <p class="header__subtitle">
+              Uma base flexível para desenvolvimento web
+            </p>
+            <div class="header__cta">
+              <a href="#" class="btn btn--primary">Começar</a>
+              <a href="#" class="btn btn--outline">Saiba Mais</a>
             </div>
+          </div>
         </div>
+      </div>
     </main>
 
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content">
+          <a href="./index.html" class="navbar__brand">Meu Projeto</a>
+          <div class="footer__column">
+            <h4>Sobre</h4>
+            <ul class="footer__list">
+              <li><a href="./about.html">Nossa História</a></li>
+              <li><a href="#">Equipe</a></li>
+              <li><a href="#">Carreiras</a></li>
+              <li><a href="#">Parceiros</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__column">
+            <h4>Recursos</h4>
+            <ul class="footer__list">
+              <li><a href="#">Documentação</a></li>
+              <li><a href="#">Guias</a></li>
+              <li><a href="#">Tutorial</a></li>
+              <li><a href="#">API</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__column">
+            <h4>Legal</h4>
+            <ul class="footer__list">
+              <li><a href="#">Privacidade</a></li>
+              <li><a href="#">Termos</a></li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Licenças</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__column">
+            <h4>Contato</h4>
+            <ul class="footer__list">
+              <li><a href="./contact.html">Fale Conosco</a></li>
+              <li><a href="#">Suporte</a></li>
+              <li><a href="#">Status</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p>&copy; 2025 Meu Projeto. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
     <script src="../dist/js/main.js"></script>
-</body>
+  </body>
 </html>

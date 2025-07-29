@@ -1,27 +1,31 @@
 // ===== SISTEMA DE CONTAINERS =====
 
+@use "../abstracts/mixins" as *;
+
 .container {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1280px;
+
+  margin: 0 auto;
   @include px(4);
-  
+
+  // Breakpoints responsivos dentro do seletor .container
   @include respond-to(sm) {
     max-width: var(--container-sm);
   }
-  
+
   @include respond-to(md) {
     max-width: var(--container-md);
   }
-  
+
   @include respond-to(lg) {
     max-width: var(--container-lg);
   }
-  
+
   @include respond-to(xl) {
     max-width: var(--container-xl);
   }
-  
+
   @include respond-to(2xl) {
     max-width: var(--container-2xl);
   }
@@ -36,32 +40,20 @@
 // Container breakpoint específicos
 .container-sm {
   @extend .container;
-  
-  @include respond-to(sm) {
-    max-width: var(--container-sm);
-  }
+  max-width: var(--container-sm);
 }
 
 .container-md {
   @extend .container;
-  
-  @include respond-to(md) {
-    max-width: var(--container-md);
-  }
+  max-width: var(--container-md);
 }
 
 .container-lg {
   @extend .container;
-  
-  @include respond-to(lg) {
-    max-width: var(--container-lg);
-  }
+  max-width: var(--container-lg);
 }
 
 .container-xl {
   @extend .container;
-  
-  @include respond-to(xl) {
-    max-width: var(--container-xl);
-  }
+  max-width: var(--container-xl);
 }

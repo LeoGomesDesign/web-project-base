@@ -1,25 +1,46 @@
-// ===== RESPONSIVE MIXINS =====
+@use "sass:map";
+@use "sass:math";
+@use "variables" as *;
 
+// Mixins responsivos
 @mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
+  @if $breakpoint == sm {
+    @media (max-width: 640px) {
       @content;
     }
-  } @else {
-    @warn "Breakpoint `#{$breakpoint}` não encontrado em $breakpoints.";
+  }
+  @if $breakpoint == md {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  }
+  @if $breakpoint == 2xl {
+    @media (max-width: 1536px) {
+      @content;
+    }
   }
 }
 
 @mixin respond-down($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
-    @media (max-width: (map-get($breakpoints, $breakpoint) - 1px)) {
+    @media (max-width: (map.get($breakpoints, $breakpoint) - 1px)) {
       @content;
     }
   }
 }
 
 @mixin respond-between($min, $max) {
-  @media (min-width: map-get($breakpoints, $min)) and (max-width: (map-get($breakpoints, $max) - 1px)) {
+  @media (min-width: map.get($breakpoints, $min)) and (max-width: (map.get($breakpoints, $max) - 1px)) {
     @content;
   }
 }
@@ -27,7 +48,12 @@
 // ===== LAYOUT MIXINS =====
 
 // Flexbox utilities
-@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+@mixin flex(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
@@ -66,43 +92,59 @@
 
 // Padding utilities
 @mixin p($value) {
-  padding: map-get($spacings, $value);
+  padding: map.get($spacings, $value);
 }
 
 @mixin px($value) {
-  padding-left: map-get($spacings, $value);
-  padding-right: map-get($spacings, $value);
+  padding-left: map.get($spacings, $value);
+  padding-right: map.get($spacings, $value);
 }
 
 @mixin py($value) {
-  padding-top: map-get($spacings, $value);
-  padding-bottom: map-get($spacings, $value);
+  padding-top: map.get($spacings, $value);
+  padding-bottom: map.get($spacings, $value);
 }
 
-@mixin pt($value) { padding-top: map-get($spacings, $value); }
-@mixin pr($value) { padding-right: map-get($spacings, $value); }
-@mixin pb($value) { padding-bottom: map-get($spacings, $value); }
-@mixin pl($value) { padding-left: map-get($spacings, $value); }
+@mixin pt($value) {
+  padding-top: map.get($spacings, $value);
+}
+@mixin pr($value) {
+  padding-right: map.get($spacings, $value);
+}
+@mixin pb($value) {
+  padding-bottom: map.get($spacings, $value);
+}
+@mixin pl($value) {
+  padding-left: map.get($spacings, $value);
+}
 
 // Margin utilities
 @mixin m($value) {
-  margin: map-get($spacings, $value);
+  margin: map.get($spacings, $value);
 }
 
 @mixin mx($value) {
-  margin-left: map-get($spacings, $value);
-  margin-right: map-get($spacings, $value);
+  margin-left: map.get($spacings, $value);
+  margin-right: map.get($spacings, $value);
 }
 
 @mixin my($value) {
-  margin-top: map-get($spacings, $value);
-  margin-bottom: map-get($spacings, $value);
+  margin-top: map.get($spacings, $value);
+  margin-bottom: map.get($spacings, $value);
 }
 
-@mixin mt($value) { margin-top: map-get($spacings, $value); }
-@mixin mr($value) { margin-right: map-get($spacings, $value); }
-@mixin mb($value) { margin-bottom: map-get($spacings, $value); }
-@mixin ml($value) { margin-left: map-get($spacings, $value); }
+@mixin mt($value) {
+  margin-top: map.get($spacings, $value);
+}
+@mixin mr($value) {
+  margin-right: map.get($spacings, $value);
+}
+@mixin mb($value) {
+  margin-bottom: map.get($spacings, $value);
+}
+@mixin ml($value) {
+  margin-left: map.get($spacings, $value);
+}
 
 // ===== COMPONENT MIXINS =====
 
@@ -122,12 +164,12 @@
   transition: var(--transition-base);
   user-select: none;
   outline: none;
-  
+
   &:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -138,11 +180,11 @@
 @mixin button-solid($color) {
   background-color: var(--color-#{$color}-500);
   color: var(--color-white);
-  
+
   &:hover:not(:disabled) {
     background-color: var(--color-#{$color}-600);
   }
-  
+
   &:active:not(:disabled) {
     background-color: var(--color-#{$color}-700);
   }
@@ -152,7 +194,7 @@
   background-color: transparent;
   border: 1px solid var(--color-#{$color}-500);
   color: var(--color-#{$color}-500);
-  
+
   &:hover:not(:disabled) {
     background-color: var(--color-#{$color}-500);
     color: var(--color-white);
@@ -162,14 +204,14 @@
 @mixin button-ghost($color) {
   background-color: transparent;
   color: var(--color-#{$color}-500);
-  
+
   &:hover:not(:disabled) {
     background-color: var(--color-#{$color}-50);
   }
 }
 
 // Card component
-@mixin card($padding: 6, $shadow: 'base') {
+@mixin card($padding: 6, $shadow: "base") {
   background-color: var(--color-white);
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-lg);
@@ -188,21 +230,21 @@
   font-size: var(--font-size-base);
   line-height: var(--leading-normal);
   transition: var(--transition-base);
-  
+
   &::placeholder {
     color: var(--color-gray-400);
   }
-  
+
   &:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
-  
+
   &:invalid {
     border-color: var(--danger);
   }
-  
+
   &:disabled {
     background-color: var(--color-gray-50);
     color: var(--color-gray-500);
@@ -247,7 +289,7 @@
 
 @mixin clearfix {
   &::after {
-    content: '';
+    content: "";
     display: table;
     clear: both;
   }
@@ -264,16 +306,20 @@
 
 // Keyframes (adicionar no final do arquivo)
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(20px);
   }
-  to { 
+  to {
     opacity: 1;
     transform: translateY(0);
   }
